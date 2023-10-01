@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+{% block title %}sdfvfdfds{% endblock title %}
+{% block body %}
+<section id="contact" class="full-height px-lg-5">
+    <div class="container">
+
+        <div class="row justify-content-center text-center">
+            {% if msg %}
+            <h5 class="text-white bg-danger p-3">{{ msg }}</h5>
+            {% endif %}
+            <div class="col-lg-8 pb-4" data-aos="fade-up">
+                <br>
+                <h2 class="text-white">Register</h2>
+   
+
+            <div class="row justify-content-center text-center" data-aos="fade-up" data-aos-delay="300">
+                <form action="{% url 'accounts:register_user_view' %}" method="post">
+                    {% csrf_token %}
+    
+                    <input type="text" name="first_name" class="form-control mt-2" placeholder="First Name" />
+                    <input type="text" name="last_name" class="form-control mt-2" placeholder="Last Name" />
+                    <input type="text" name="username" class="form-control mt-2" placeholder="User Name" />
+                    <input type="email" name="email" class="form-control mt-2" placeholder="Email Address" />
+                    <input type="password" name="password" class="form-control mt-2" placeholder="Password" />
+                    <br>
+                    <input type="submit" value="Register" class="btn btn-primary me-3" />
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+    {% endblock body %}

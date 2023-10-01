@@ -1,0 +1,58 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+
+<section id="services" class="full-height px-lg-5">
+    <div class="container">
+        <div class="row pb-4" data-aos="fade-up" style="border: 10px;">
+            <div class="col-lg-8">
+                <br>
+                <h6 style="color: antiquewhite; font-weight: bolder;" class="text-brand">SERVICES</h6>
+                <h1 style="color: antiquewhite;">Services That I Provide</h1>
+            </div>
+        </div>
+        <div class="row gy-4">
+
+
+        {% for service in Requests %}
+
+            <div class="col-4" data-aos="fade-up" data-aos-delay="300" style="border: 10px;">
+                <div class="service p-4 bg-base rounded-4 shadow-effect border border-light" style="height: fit-content; border: 30px;">
+            <img src="{{ service.image.url }}" class="card-img-top" style="height: 40%; width: 100%;"/>
+
+
+                    <h5 style="word-wrap: break-word; color: antiquewhite;" class="mt-4 mb-2">{{ service.title }}</h5>
+                    <p style="word-wrap: break-word; height: 15%;color: antiquewhite;"color: antiquewhite;>{{ service.description }}</p>
+                    <br>
+                    <a href="{% url 'Requests:service_detail_view' service.id %}" class="link-custom">Read More</a>
+                    <br>
+                    <div style="padding: 10px;" >
+                    {% if request.user.is_staff %}
+                    <a href="{% url 'Requests:service_update_view' service.id %}" class="btn btn-warning">Update</a>
+                    <a href="{% url 'Requests:service_delete_view' service.id %}" class="btn btn-danger">Delete</a>
+                    {% endif %}
+                    <form style="display: flex; text-align: center;justify-content: center;" action="{% url 'Requests:add_request_view' service.id %}" method="post">
+                    
+                        {% csrf_token %}
+                   
+
+
+                    
+
+                
+                </div>
+                </div>
+
+
+            </div>
+            {% endfor %}
+
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SERVICES -->
+{% endblock body %}

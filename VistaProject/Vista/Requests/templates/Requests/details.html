@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+{% block body %}
+
+<section id="services" class="-height px-lg-5">
+    <div class="container">
+        <div class="p-4 d-flex flex-column position-static">
+            <div class="row pb-4" data-aos="fade-up">
+                <div class="row-lg-8">
+                    <h1 style="color: antiquewhite;" class="text-brand">SERVICE DETAILS</h1>
+                </div>
+            </div>
+            <div style="width: 80%;" class="row gy-4">
+                <div class="row-4" data-aos="fade-up" data-aos-delay="300" >
+                    <div class="service p-4 bg-base rounded-4 shadow-effect border">
+                <img src="{{ service.image.url }}" class="card-img-top" style="height: 50%;"/>
+    
+                <h5 style="word-wrap: break-word; color: antiquewhite; font-weight: bold;" class="mt-4 mb-2">{{ service.title }}</h5>
+                <p style="word-wrap: break-word; color: antiquewhite;">{{ service.description }}</p>
+                <form style="display: flex; text-align: center;justify-content: space-between;" action="{% url 'Requests:add_request_view' service.id %}" method="post">
+                    
+                    {% csrf_token %}
+                    {% if request.user.is_authenticated and not request.user.is_staff  %}
+                    <input type="submit" value="Send Request" class="btn btn-primary">
+                    {% endif %}
+
+                    <a href="{% url 'Requests:service_view' %}" class="btn btn-success" tabindex="-1" style="margin-top: 10px; padding: 15px;" role="button" aria-disabled="true">Go back   </a>
+
+            
+                 </form>      
+            </div>
+            </div>
+            </div>
+            </div>
+    
+
+    </div>
+
+    
+    <div class="row mt-4">
+      <div class="col-6">
+
+
+      </div>
+      </div>
+      </div>
+      </div>
+    </section>
+
+    {% endblock body %}

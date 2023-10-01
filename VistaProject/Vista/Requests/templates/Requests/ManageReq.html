@@ -1,0 +1,41 @@
+{% extends 'main/base.html' %}
+{% block title %} Manage {% endblock title %}
+
+{% block body %}
+<section id="services" class="-height px-lg-5">
+    <div class="container">
+
+        <div class="row pb-4" data-aos="fade-up">
+            <div class="col-lg-8">
+                <h2 class="text-brand">All requests</h2>
+                <h1>User requests</h1>
+            </div>
+        </div>
+        <div class="row gy-4">
+
+        {% for request in allreq %}
+            <div class="col-4" data-aos="fade-up" data-aos-delay="300" style="margin-top: 15px;" >
+                <div class="service p-4 bg-base rounded-4 shadow-effect">
+                    <h5 style="word-wrap: break-word;" class="mt-4 mb-2">{{ request.user.first_name }}</h5>
+                    <p style="word-wrap: break-word;">{{ request.service.title }}</p>
+                    <p style="word-wrap: break-word;">Status: {{ request.status }}</p>
+                  
+
+                    <a href="{% url 'Requests:update_status' request.id %}" class="link-custom">update</a>
+                    <br>
+                    <div style="padding: 10px;">
+
+                </div>
+                </div>
+                <form action=""></form>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock body %}
